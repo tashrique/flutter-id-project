@@ -4,8 +4,15 @@ void main() => runApp(MaterialApp(
       home: TashCard(),
     ));
 
-class TashCard extends StatelessWidget {
+class TashCard extends StatefulWidget {
   const TashCard({super.key});
+
+  @override
+  State<TashCard> createState() => _TashCardState();
+}
+
+class _TashCardState extends State<TashCard> {
+  int level = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +24,14 @@ class TashCard extends StatelessWidget {
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            level++;
+          });
+        },
+        child: Icon(Icons.add),
+      ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
         child: Column(
@@ -24,8 +39,7 @@ class TashCard extends StatelessWidget {
           children: <Widget>[
             Center(
               child: CircleAvatar(
-                backgroundImage:
-                AssetImage('asset/1.JPG'),
+                backgroundImage: AssetImage('asset/1.JPG'),
                 radius: 45.0,
               ),
             ),
@@ -66,7 +80,7 @@ class TashCard extends StatelessWidget {
               height: 5.0,
             ),
             Text(
-              '8',
+              '$level',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 1.4,
